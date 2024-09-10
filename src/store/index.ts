@@ -7,17 +7,14 @@ const rootReducer = combineReducers({
   [api.reducerPath]: api.reducer
 })
 
-type PreloadedStateFromReducer<R extends Reducer<any, any, any>> =
-  R extends Reducer<any, any, infer P> ? P : never
-
-export type PreloadedState = PreloadedStateFromReducer<typeof rootReducer>
+export type PreloadedState = Partial<RootState>
 
 export const customConfigureStore = (preloadedState?: PreloadedState) => {
   return configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(api.middleware),
-    preloadedState: preloadedState
+    preloadedState
   })
 }
 
