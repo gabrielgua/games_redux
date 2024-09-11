@@ -24,7 +24,6 @@ describe('Testes para o componente Produto', () => {
     const btn = screen.getByTestId('btn-add-produto')
     fireEvent.click(btn)
 
-    //@ts-ignore it says the store its an unknown object but still works, :)
     expect(store.getState().carrinho.itens).toHaveLength(1)
   })
 })
